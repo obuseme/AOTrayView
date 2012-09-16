@@ -26,6 +26,24 @@
 #import "Constants.h"
 #import <QuartzCore/CAAnimation.h>
 
+@interface AOTrayView ()
+
+@property (nonatomic, retain) UILabel *counterLabel;
+@property (nonatomic, retain) UIScrollView *trayContents;
+@property (nonatomic, retain) NSString *singleItemLabel;
+@property (nonatomic, retain) NSString *multiItemLabel;
+@property (nonatomic, retain) NSMutableDictionary *items;
+@property (nonatomic, retain) NSMutableArray *itemViews;
+@property (nonatomic, retain) UIView *transparentOverlay;
+@property (nonatomic, retain) UIButton *doneButton;
+@property (nonatomic, retain) UIView *pressedButtonView;
+@property (nonatomic, retain) UIImageView *unselectedIconImage1;
+@property (nonatomic, retain) UIImageView *unselectedIconImage2;
+@property (nonatomic, retain) UIImageView *unselectedIconImage3;
+@property (nonatomic, retain) UIImageView *unselectedIconImage4;
+
+@end
+
 @implementation AOTrayView
 
 @synthesize counterLabel,

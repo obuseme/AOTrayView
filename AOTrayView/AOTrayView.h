@@ -31,20 +31,7 @@
 }
 
 @property BOOL alwaysShow;
-@property (nonatomic, retain) UILabel *counterLabel;
-@property (nonatomic, retain) UIScrollView *trayContents;
-@property (nonatomic, retain) NSString *singleItemLabel;
-@property (nonatomic, retain) NSString *multiItemLabel;
-@property (nonatomic, retain) NSMutableDictionary *items;
-@property (nonatomic, retain) NSMutableArray *itemViews;
-@property (nonatomic, retain) UIView *transparentOverlay;
-@property (nonatomic, retain) UIButton *doneButton;
-@property (nonatomic, retain) UIView *pressedButtonView;
 @property (nonatomic, retain) UIImageView *animatingImageView;
-@property (nonatomic, retain) UIImageView *unselectedIconImage1;
-@property (nonatomic, retain) UIImageView *unselectedIconImage2;
-@property (nonatomic, retain) UIImageView *unselectedIconImage3;
-@property (nonatomic, retain) UIImageView *unselectedIconImage4;
 
 - (id)initWithFrame:(CGRect)frame andHideNumbers:(BOOL) pAndHideNumbers withController:(id) controller;
 - (id)initWithFrame:(CGRect)frame andSingleItemLabel:(NSString *)pSingleItemLabel andMultiItemLabel:(NSString *)pMultiItemLabel;
