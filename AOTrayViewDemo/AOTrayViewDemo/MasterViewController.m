@@ -11,6 +11,7 @@
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
+    NSMutableDictionary *_selectedItems;
     AOTrayView *_trayView;
 }
 @end
@@ -29,18 +30,23 @@
 - (void)dealloc
 {
     [_objects release];
+    [_selectedItems release];
     [super dealloc];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _objects = [NSMutableArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", nil];
+    _objects = [[NSMutableArray alloc] initWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", nil];
+    _selectedItems = [[NSMutableDictionary alloc] initWithCapacity:1];
     float overlayHeight = 15.0;
     float trayHeight = 55.0;
-    _trayView = [[[AOTrayView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height+overlayHeight, self.view.frame.size.width, trayHeight + overlayHeight) andSingleItemLabel:@"1 friend invited" andMultiItemLabel:@" friends invited"] autorelease];
+    _trayView = [[AOTrayView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height+overlayHeight, self.view.frame.size.width, trayHeight + overlayHeight) andSingleItemLabel:@"1 item selected" andMultiItemLabel:@" items selected"];
     _trayView.overlayHeight = overlayHeight;
     _trayView.trayHeight = trayHeight;
+    _trayView.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:_trayView];
+    [_trayView release];
 }
 
 - (void)viewDidUnload
@@ -84,6 +90,28 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UIView *thumbnail = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _trayView.trayHeight-10, _trayView.trayHeight-10)];
+    thumbnail.backgroundColor = [UIColor redColor];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _trayView.trayHeight-10, _trayView.trayHeight-10)];
+    label.textAlignment = UITextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:18.0];
+    label.text = [[_objects objectAtIndex:indexPath.row] description];
+    label.backgroundColor = [UIColor clearColor];
+    [thumbnail addSubview:label];
+    [label release];
+    
+    if ([_selectedItems objectForKey:[[_objects objectAtIndex:indexPath.row] description]]) {
+
+        [_selectedItems removeObjectForKey:[[_objects objectAtIndex:indexPath.row] description]];
+        [_trayView remove:[NSDictionary dictionaryWithObjectsAndKeys:thumbnail, @"view", [[_objects objectAtIndex:indexPath.row] description], @
+                               "id", nil] adjacentViewToResize:tableView];
+
+    } else {
+        [_trayView add:[NSDictionary dictionaryWithObjectsAndKeys:thumbnail, @"view", [[_objects objectAtIndex:indexPath.row] description], @
+                        "id", nil] adjacentViewToResize:tableView];
+        [thumbnail release];
+        [_selectedItems setObject:[_objects objectAtIndex:indexPath.row] forKey:[[_objects objectAtIndex:indexPath.row] description]];
+    }
 }
 
 @end

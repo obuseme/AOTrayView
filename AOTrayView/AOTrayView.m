@@ -131,41 +131,8 @@
     [self.doneButton addTarget:controller action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
     //UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, trayHeight)];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(225, 20, 90, trayHeight-5)];
-    
-//    imageView.contentMode = UIViewContentModeScaleToFill;
-//    NSMutableArray *imageArray = [[NSMutableArray alloc] initWithCapacity:25];
-//    [imageArray addObject:[UIImage imageNamed:@"a0.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a2.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a3.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a4.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a5.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a6.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a7.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a8.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a9.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a10.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a11.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a12.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a13.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a14.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a15.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a16.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a17.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a18.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a19.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a20.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a21.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a22.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a23.png"]];
-//    [imageArray addObject:[UIImage imageNamed:@"a24.png"]];
-//    imageView.animationImages = imageArray;
-//    [imageArray release];
-//    imageView.animationDuration = 0.5;
-//    imageView.animationRepeatCount = 0;
-//    [self.doneButton addSubview:imageView];
     [imageView setImage:[UIImage imageNamed:@"powered-by-google-on-non-white.png"]];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
-//    [self addSubview:imageView];
     
     //UIView *placeHolder = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
     self.unselectedIconImage1 = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)] autorelease];
@@ -193,9 +160,6 @@
     
     self.animatingImageView = imageView;
     [imageView release];
-    
-//    [self.doneButton addTarget:self action:@selector(doneTouch:) forControlEvents:UIControlEventTouchDown];
-//    [self.doneButton addTarget:self action:@selector(doneReleased:) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:imageView];
     
