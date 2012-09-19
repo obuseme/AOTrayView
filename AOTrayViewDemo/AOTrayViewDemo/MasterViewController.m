@@ -7,9 +7,11 @@
 //
 
 #import "MasterViewController.h"
+#import "AOTrayView.h"
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
+    AOTrayView *_trayView;
 }
 @end
 
@@ -34,6 +36,11 @@
 {
     [super viewDidLoad];
     _objects = [NSMutableArray arrayWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", nil];
+    float overlayHeight = 15.0;
+    float trayHeight = 55.0;
+    _trayView = [[[AOTrayView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height+overlayHeight, self.view.frame.size.width, trayHeight + overlayHeight) andSingleItemLabel:@"1 friend invited" andMultiItemLabel:@" friends invited"] autorelease];
+    _trayView.overlayHeight = overlayHeight;
+    _trayView.trayHeight = trayHeight;
 }
 
 - (void)viewDidUnload

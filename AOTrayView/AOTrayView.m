@@ -25,9 +25,6 @@
 #import "AOTrayView.h"
 #import <QuartzCore/CAAnimation.h>
 
-const float TRAY_HEIGHT=55.0;
-const float OVERLAY_HEIGHT=15.0;
-
 @interface AOTrayView ()
 
 @property (nonatomic, retain) UILabel *counterLabel;
@@ -48,7 +45,9 @@ const float OVERLAY_HEIGHT=15.0;
 
 @implementation AOTrayView
 
-@synthesize counterLabel,
+@synthesize trayHeight,
+            overlayHeight,
+            counterLabel,
             trayContents,
             multiItemLabel,
             singleItemLabel,
@@ -78,7 +77,7 @@ const float OVERLAY_HEIGHT=15.0;
         self.multiItemLabel = pMultiItemLabel;
 
         if (! hideNumbers) {
-            self.transparentOverlay = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, OVERLAY_HEIGHT)] autorelease];
+            self.transparentOverlay = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, overlayHeight)] autorelease];
             self.transparentOverlay.backgroundColor = [UIColor grayColor];
             self.transparentOverlay.alpha = 0.5;
             self.transparentOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
@@ -89,7 +88,7 @@ const float OVERLAY_HEIGHT=15.0;
             [self addSubview:transparentOverlay];
         }
         
-        self.trayContents = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, OVERLAY_HEIGHT-headerHeight, frame.size.width, frame.size.height)] autorelease];
+        self.trayContents = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, overlayHeight-headerHeight, frame.size.width, frame.size.height)] autorelease];
         self.trayContents.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
         self.trayContents.backgroundColor = [UIColor clearColor];
         UIImageView *gradient = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
@@ -121,17 +120,17 @@ const float OVERLAY_HEIGHT=15.0;
     self = [self initWithFrame:frame andSingleItemLabel:@"" andMultiItemLabel:@""];
     self.trayContents.backgroundColor = [UIColor clearColor];
     [self.transparentOverlay removeFromSuperview];
-//    self.trayContents.frame = CGRectMake(0, OVERLAY_HEIGHT, 320, frame.size.height);
+//    self.trayContents.frame = CGRectMake(0, overlayHeight, 320, frame.size.height);
     self.doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.doneButton.frame = CGRectMake(220, 0, 100, TRAY_HEIGHT);
+    self.doneButton.frame = CGRectMake(220, 0, 100, trayHeight);
     [self.doneButton setBackgroundImage:[UIImage imageNamed:@"a0.png"] forState:UIControlStateNormal];
     //[self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
     [self.doneButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     self.doneButton.titleLabel.textColor = [UIColor whiteColor];
     self.doneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     [self.doneButton addTarget:controller action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
-    //UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, TRAY_HEIGHT)];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(225, 20, 90, TRAY_HEIGHT-5)];
+    //UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, trayHeight)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(225, 20, 90, trayHeight-5)];
     
 //    imageView.contentMode = UIViewContentModeScaleToFill;
 //    NSMutableArray *imageArray = [[NSMutableArray alloc] initWithCapacity:25];
@@ -186,7 +185,7 @@ const float OVERLAY_HEIGHT=15.0;
     self.unselectedIconImage4.image = [UIImage imageNamed:@"deci_icon_where_check_2.png"];
     [self.trayContents addSubview:self.unselectedIconImage4];
     
-    self.pressedButtonView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, TRAY_HEIGHT)] autorelease];
+    self.pressedButtonView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, trayHeight)] autorelease];
     self.pressedButtonView.hidden = YES;
     self.pressedButtonView.backgroundColor = [UIColor blackColor];
     self.pressedButtonView.alpha = 0.65;
@@ -229,11 +228,11 @@ const float OVERLAY_HEIGHT=15.0;
         [UIView setAnimationDuration:0.15];
         
         hideTrayContents = NO;
-        self.frame = CGRectMake(0, self.frame.origin.y-TRAY_HEIGHT-OVERLAY_HEIGHT, self.frame.size.width, TRAY_HEIGHT);
+        self.frame = CGRectMake(0, self.frame.origin.y-trayHeight-overlayHeight, self.frame.size.width, trayHeight);
         adjacentViewToResize.frame = CGRectMake(adjacentViewToResize.frame.origin.x, 
                                                 adjacentViewToResize.frame.origin.y, 
                                                 adjacentViewToResize.frame.size.width, 
-                                                adjacentViewToResize.frame.size.height - TRAY_HEIGHT-  OVERLAY_HEIGHT + headerHeight );
+                                                adjacentViewToResize.frame.size.height - trayHeight-  overlayHeight + headerHeight );
         
         [UIView commitAnimations];
     } else {
@@ -254,7 +253,7 @@ const float OVERLAY_HEIGHT=15.0;
     
     for (int counter=0;counter < [self.itemViews count];counter++) {
         UIView *viewToMove = (UIView *) [[self.itemViews objectAtIndex:counter] objectForKey:@"view"];
-        viewToMove.frame = CGRectMake(viewToMove.frame.origin.x+TRAY_HEIGHT, viewToMove.frame.origin.y, viewToMove.frame.size.width, viewToMove.frame.size.height);
+        viewToMove.frame = CGRectMake(viewToMove.frame.origin.x+trayHeight, viewToMove.frame.origin.y, viewToMove.frame.size.width, viewToMove.frame.size.height);
     }
     
     
@@ -263,7 +262,7 @@ const float OVERLAY_HEIGHT=15.0;
     
     [newToAdd setObject:view forKey:@"view"];
     [self.itemViews insertObject:newToAdd atIndex:0];
-    self.trayContents.contentSize = CGSizeMake(TRAY_HEIGHT * [[self.items allKeys] count], TRAY_HEIGHT);
+    self.trayContents.contentSize = CGSizeMake(trayHeight * [[self.items allKeys] count], trayHeight);
     [self.trayContents addSubview:view];
     
     [UIView beginAnimations:@"bounce" context:nil];
@@ -318,11 +317,11 @@ const float OVERLAY_HEIGHT=15.0;
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.15];
         
-        self.frame = CGRectMake(0, self.frame.origin.y+ TRAY_HEIGHT+OVERLAY_HEIGHT, self.frame.size.width, TRAY_HEIGHT);
+        self.frame = CGRectMake(0, self.frame.origin.y+ trayHeight+overlayHeight, self.frame.size.width, trayHeight);
         adjacentViewToResize.frame = CGRectMake(adjacentViewToResize.frame.origin.x, 
                                                  adjacentViewToResize.frame.origin.y, 
                                                  adjacentViewToResize.frame.size.width, 
-                                                 adjacentViewToResize.frame.size.height + TRAY_HEIGHT+OVERLAY_HEIGHT);
+                                                 adjacentViewToResize.frame.size.height + trayHeight+overlayHeight);
         
         [UIView commitAnimations];
         
@@ -333,7 +332,7 @@ const float OVERLAY_HEIGHT=15.0;
         
         for (int counter=indexOfRemovedView;counter < [self.itemViews count];counter++) {
             UIView *viewToMove = (UIView *) [[self.itemViews objectAtIndex:counter] objectForKey:@"view"];
-            viewToMove.frame = CGRectMake(viewToMove.frame.origin.x-TRAY_HEIGHT, viewToMove.frame.origin.y, viewToMove.frame.size.width, viewToMove.frame.size.height);
+            viewToMove.frame = CGRectMake(viewToMove.frame.origin.x-trayHeight, viewToMove.frame.origin.y, viewToMove.frame.size.width, viewToMove.frame.size.height);
         }
         
         
@@ -346,7 +345,7 @@ const float OVERLAY_HEIGHT=15.0;
         self.counterLabel.text = [NSString stringWithFormat:@"%d %@", [[self.items allKeys] count], self.multiItemLabel];
         }
     }
-    self.trayContents.contentSize = CGSizeMake(TRAY_HEIGHT * [[self.items allKeys] count], TRAY_HEIGHT);
+    self.trayContents.contentSize = CGSizeMake(trayHeight * [[self.items allKeys] count], trayHeight);
 }
 
 - (void) dealloc {

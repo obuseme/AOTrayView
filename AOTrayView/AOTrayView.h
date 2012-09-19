@@ -24,12 +24,15 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface AOTrayView : UIView {
     BOOL hideTrayContents;
     BOOL hideNumbers;
     float headerHeight;
 }
 
+@property float trayHeight;
+@property float overlayHeight;
 @property BOOL alwaysShow;
 @property (nonatomic, retain) UIImageView *animatingImageView;
 
