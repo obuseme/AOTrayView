@@ -1,0 +1,462 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		238F8ABF1609493E00CA6908 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238F8ABE1609493E00CA6908 /* UIKit.framework */; };
+		238F8AC11609493E00CA6908 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238F8AC01609493E00CA6908 /* Foundation.framework */; };
+		238F8AC31609493E00CA6908 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238F8AC21609493E00CA6908 /* CoreGraphics.framework */; };
+		238F8AC91609493E00CA6908 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 238F8AC71609493E00CA6908 /* InfoPlist.strings */; };
+		238F8ACB1609493E00CA6908 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 238F8ACA1609493E00CA6908 /* main.m */; };
+		238F8ACF1609493E00CA6908 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 238F8ACE1609493E00CA6908 /* AppDelegate.m */; };
+		238F8AD21609493E00CA6908 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 238F8AD11609493E00CA6908 /* MasterViewController.m */; };
+		238F8AD81609493E00CA6908 /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 238F8AD61609493E00CA6908 /* MasterViewController.xib */; };
+		238F8AE31609493E00CA6908 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238F8AE21609493E00CA6908 /* SenTestingKit.framework */; };
+		238F8AE41609493E00CA6908 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238F8ABE1609493E00CA6908 /* UIKit.framework */; };
+		238F8AE51609493E00CA6908 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238F8AC01609493E00CA6908 /* Foundation.framework */; };
+		238F8AED1609493E00CA6908 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 238F8AEB1609493E00CA6908 /* InfoPlist.strings */; };
+		238F8AF01609493E00CA6908 /* AOTrayViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 238F8AEF1609493E00CA6908 /* AOTrayViewDemoTests.m */; };
+		238F8AFC1609495300CA6908 /* AOTrayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 238F8AFB1609495300CA6908 /* AOTrayView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		238F8AE61609493E00CA6908 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 238F8AB11609493E00CA6908 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 238F8AB91609493E00CA6908;
+			remoteInfo = AOTrayViewDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		238F8ABA1609493E00CA6908 /* AOTrayViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AOTrayViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		238F8ABE1609493E00CA6908 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		238F8AC01609493E00CA6908 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		238F8AC21609493E00CA6908 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		238F8AC61609493E00CA6908 /* AOTrayViewDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AOTrayViewDemo-Info.plist"; sourceTree = "<group>"; };
+		238F8AC81609493E00CA6908 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		238F8ACA1609493E00CA6908 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		238F8ACC1609493E00CA6908 /* AOTrayViewDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AOTrayViewDemo-Prefix.pch"; sourceTree = "<group>"; };
+		238F8ACD1609493E00CA6908 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		238F8ACE1609493E00CA6908 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		238F8AD01609493E00CA6908 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		238F8AD11609493E00CA6908 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		238F8AD71609493E00CA6908 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController.xib; sourceTree = "<group>"; };
+		238F8AE11609493E00CA6908 /* AOTrayViewDemoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AOTrayViewDemoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		238F8AE21609493E00CA6908 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		238F8AEA1609493E00CA6908 /* AOTrayViewDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AOTrayViewDemoTests-Info.plist"; sourceTree = "<group>"; };
+		238F8AEC1609493E00CA6908 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		238F8AEE1609493E00CA6908 /* AOTrayViewDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AOTrayViewDemoTests.h; sourceTree = "<group>"; };
+		238F8AEF1609493E00CA6908 /* AOTrayViewDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOTrayViewDemoTests.m; sourceTree = "<group>"; };
+		238F8AFA1609495300CA6908 /* AOTrayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AOTrayView.h; sourceTree = "<group>"; };
+		238F8AFB1609495300CA6908 /* AOTrayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AOTrayView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		238F8AB71609493E00CA6908 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				238F8ABF1609493E00CA6908 /* UIKit.framework in Frameworks */,
+				238F8AC11609493E00CA6908 /* Foundation.framework in Frameworks */,
+				238F8AC31609493E00CA6908 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		238F8ADD1609493E00CA6908 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				238F8AE31609493E00CA6908 /* SenTestingKit.framework in Frameworks */,
+				238F8AE41609493E00CA6908 /* UIKit.framework in Frameworks */,
+				238F8AE51609493E00CA6908 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		238F8AAF1609493E00CA6908 = {
+			isa = PBXGroup;
+			children = (
+				238F8AC41609493E00CA6908 /* AOTrayViewDemo */,
+				238F8AE81609493E00CA6908 /* AOTrayViewDemoTests */,
+				238F8ABD1609493E00CA6908 /* Frameworks */,
+				238F8ABB1609493E00CA6908 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		238F8ABB1609493E00CA6908 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				238F8ABA1609493E00CA6908 /* AOTrayViewDemo.app */,
+				238F8AE11609493E00CA6908 /* AOTrayViewDemoTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		238F8ABD1609493E00CA6908 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				238F8AF91609495300CA6908 /* AOTrayView */,
+				238F8ABE1609493E00CA6908 /* UIKit.framework */,
+				238F8AC01609493E00CA6908 /* Foundation.framework */,
+				238F8AC21609493E00CA6908 /* CoreGraphics.framework */,
+				238F8AE21609493E00CA6908 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		238F8AC41609493E00CA6908 /* AOTrayViewDemo */ = {
+			isa = PBXGroup;
+			children = (
+				238F8ACD1609493E00CA6908 /* AppDelegate.h */,
+				238F8ACE1609493E00CA6908 /* AppDelegate.m */,
+				238F8AD01609493E00CA6908 /* MasterViewController.h */,
+				238F8AD11609493E00CA6908 /* MasterViewController.m */,
+				238F8AD61609493E00CA6908 /* MasterViewController.xib */,
+				238F8AC51609493E00CA6908 /* Supporting Files */,
+			);
+			path = AOTrayViewDemo;
+			sourceTree = "<group>";
+		};
+		238F8AC51609493E00CA6908 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				238F8AC61609493E00CA6908 /* AOTrayViewDemo-Info.plist */,
+				238F8AC71609493E00CA6908 /* InfoPlist.strings */,
+				238F8ACA1609493E00CA6908 /* main.m */,
+				238F8ACC1609493E00CA6908 /* AOTrayViewDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		238F8AE81609493E00CA6908 /* AOTrayViewDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				238F8AEE1609493E00CA6908 /* AOTrayViewDemoTests.h */,
+				238F8AEF1609493E00CA6908 /* AOTrayViewDemoTests.m */,
+				238F8AE91609493E00CA6908 /* Supporting Files */,
+			);
+			path = AOTrayViewDemoTests;
+			sourceTree = "<group>";
+		};
+		238F8AE91609493E00CA6908 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				238F8AEA1609493E00CA6908 /* AOTrayViewDemoTests-Info.plist */,
+				238F8AEB1609493E00CA6908 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		238F8AF91609495300CA6908 /* AOTrayView */ = {
+			isa = PBXGroup;
+			children = (
+				238F8AFA1609495300CA6908 /* AOTrayView.h */,
+				238F8AFB1609495300CA6908 /* AOTrayView.m */,
+			);
+			name = AOTrayView;
+			path = ../AOTrayView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		238F8AB91609493E00CA6908 /* AOTrayViewDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 238F8AF31609493E00CA6908 /* Build configuration list for PBXNativeTarget "AOTrayViewDemo" */;
+			buildPhases = (
+				238F8AB61609493E00CA6908 /* Sources */,
+				238F8AB71609493E00CA6908 /* Frameworks */,
+				238F8AB81609493E00CA6908 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AOTrayViewDemo;
+			productName = AOTrayViewDemo;
+			productReference = 238F8ABA1609493E00CA6908 /* AOTrayViewDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		238F8AE01609493E00CA6908 /* AOTrayViewDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 238F8AF61609493E00CA6908 /* Build configuration list for PBXNativeTarget "AOTrayViewDemoTests" */;
+			buildPhases = (
+				238F8ADC1609493E00CA6908 /* Sources */,
+				238F8ADD1609493E00CA6908 /* Frameworks */,
+				238F8ADE1609493E00CA6908 /* Resources */,
+				238F8ADF1609493E00CA6908 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				238F8AE71609493E00CA6908 /* PBXTargetDependency */,
+			);
+			name = AOTrayViewDemoTests;
+			productName = AOTrayViewDemoTests;
+			productReference = 238F8AE11609493E00CA6908 /* AOTrayViewDemoTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		238F8AB11609493E00CA6908 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Andrew Obusek";
+			};
+			buildConfigurationList = 238F8AB41609493E00CA6908 /* Build configuration list for PBXProject "AOTrayViewDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 238F8AAF1609493E00CA6908;
+			productRefGroup = 238F8ABB1609493E00CA6908 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				238F8AB91609493E00CA6908 /* AOTrayViewDemo */,
+				238F8AE01609493E00CA6908 /* AOTrayViewDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		238F8AB81609493E00CA6908 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				238F8AC91609493E00CA6908 /* InfoPlist.strings in Resources */,
+				238F8AD81609493E00CA6908 /* MasterViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		238F8ADE1609493E00CA6908 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				238F8AED1609493E00CA6908 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		238F8ADF1609493E00CA6908 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		238F8AB61609493E00CA6908 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				238F8ACB1609493E00CA6908 /* main.m in Sources */,
+				238F8ACF1609493E00CA6908 /* AppDelegate.m in Sources */,
+				238F8AD21609493E00CA6908 /* MasterViewController.m in Sources */,
+				238F8AFC1609495300CA6908 /* AOTrayView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		238F8ADC1609493E00CA6908 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				238F8AF01609493E00CA6908 /* AOTrayViewDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		238F8AE71609493E00CA6908 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 238F8AB91609493E00CA6908 /* AOTrayViewDemo */;
+			targetProxy = 238F8AE61609493E00CA6908 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		238F8AC71609493E00CA6908 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				238F8AC81609493E00CA6908 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		238F8AD61609493E00CA6908 /* MasterViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				238F8AD71609493E00CA6908 /* en */,
+			);
+			name = MasterViewController.xib;
+			sourceTree = "<group>";
+		};
+		238F8AEB1609493E00CA6908 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				238F8AEC1609493E00CA6908 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		238F8AF11609493E00CA6908 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		238F8AF21609493E00CA6908 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		238F8AF41609493E00CA6908 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AOTrayViewDemo/AOTrayViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "AOTrayViewDemo/AOTrayViewDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		238F8AF51609493E00CA6908 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AOTrayViewDemo/AOTrayViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "AOTrayViewDemo/AOTrayViewDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		238F8AF71609493E00CA6908 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AOTrayViewDemo.app/AOTrayViewDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AOTrayViewDemo/AOTrayViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "AOTrayViewDemoTests/AOTrayViewDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		238F8AF81609493E00CA6908 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AOTrayViewDemo.app/AOTrayViewDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AOTrayViewDemo/AOTrayViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "AOTrayViewDemoTests/AOTrayViewDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		238F8AB41609493E00CA6908 /* Build configuration list for PBXProject "AOTrayViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				238F8AF11609493E00CA6908 /* Debug */,
+				238F8AF21609493E00CA6908 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		238F8AF31609493E00CA6908 /* Build configuration list for PBXNativeTarget "AOTrayViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				238F8AF41609493E00CA6908 /* Debug */,
+				238F8AF51609493E00CA6908 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		238F8AF61609493E00CA6908 /* Build configuration list for PBXNativeTarget "AOTrayViewDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				238F8AF71609493E00CA6908 /* Debug */,
+				238F8AF81609493E00CA6908 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 238F8AB11609493E00CA6908 /* Project object */;
+}

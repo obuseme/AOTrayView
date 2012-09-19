@@ -23,8 +23,10 @@
 //  SOFTWARE.
 
 #import "AOTrayView.h"
-#import "Constants.h"
 #import <QuartzCore/CAAnimation.h>
+
+const float TRAY_HEIGHT=55.0;
+const float OVERLAY_HEIGHT=15.0;
 
 @interface AOTrayView ()
 
