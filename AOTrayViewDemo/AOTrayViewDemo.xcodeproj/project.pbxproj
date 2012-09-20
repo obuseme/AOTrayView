@@ -19,8 +19,10 @@
 		238F8AE41609493E00CA6908 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238F8ABE1609493E00CA6908 /* UIKit.framework */; };
 		238F8AE51609493E00CA6908 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238F8AC01609493E00CA6908 /* Foundation.framework */; };
 		238F8AED1609493E00CA6908 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 238F8AEB1609493E00CA6908 /* InfoPlist.strings */; };
-		238F8AF01609493E00CA6908 /* AOTrayViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 238F8AEF1609493E00CA6908 /* AOTrayViewDemoTests.m */; };
+		238F8AF01609493E00CA6908 /* AOTrayViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 238F8AEF1609493E00CA6908 /* AOTrayViewTests.m */; };
 		238F8AFC1609495300CA6908 /* AOTrayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 238F8AFB1609495300CA6908 /* AOTrayView.m */; };
+		238F8B26160AB47600CA6908 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 238F8B1F160AB47600CA6908 /* libOCMock.a */; };
+		238F8B27160AB55900CA6908 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 238F8B1F160AB47600CA6908 /* libOCMock.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,10 +53,17 @@
 		238F8AE21609493E00CA6908 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		238F8AEA1609493E00CA6908 /* AOTrayViewDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AOTrayViewDemoTests-Info.plist"; sourceTree = "<group>"; };
 		238F8AEC1609493E00CA6908 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		238F8AEE1609493E00CA6908 /* AOTrayViewDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AOTrayViewDemoTests.h; sourceTree = "<group>"; };
-		238F8AEF1609493E00CA6908 /* AOTrayViewDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOTrayViewDemoTests.m; sourceTree = "<group>"; };
+		238F8AEE1609493E00CA6908 /* AOTrayViewTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AOTrayViewTests.h; sourceTree = "<group>"; };
+		238F8AEF1609493E00CA6908 /* AOTrayViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOTrayViewTests.m; sourceTree = "<group>"; };
 		238F8AFA1609495300CA6908 /* AOTrayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AOTrayView.h; sourceTree = "<group>"; };
 		238F8AFB1609495300CA6908 /* AOTrayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AOTrayView.m; sourceTree = "<group>"; };
+		238F8B1F160AB47600CA6908 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
+		238F8B20160AB47600CA6908 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		238F8B21160AB47600CA6908 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		238F8B22160AB47600CA6908 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		238F8B23160AB47600CA6908 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		238F8B24160AB47600CA6908 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		238F8B25160AB47600CA6908 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +74,7 @@
 				238F8ABF1609493E00CA6908 /* UIKit.framework in Frameworks */,
 				238F8AC11609493E00CA6908 /* Foundation.framework in Frameworks */,
 				238F8AC31609493E00CA6908 /* CoreGraphics.framework in Frameworks */,
+				238F8B26160AB47600CA6908 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +85,7 @@
 				238F8AE31609493E00CA6908 /* SenTestingKit.framework in Frameworks */,
 				238F8AE41609493E00CA6908 /* UIKit.framework in Frameworks */,
 				238F8AE51609493E00CA6908 /* Foundation.framework in Frameworks */,
+				238F8B27160AB55900CA6908 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +114,7 @@
 		238F8ABD1609493E00CA6908 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				238F8B1E160AB47600CA6908 /* OCMock */,
 				238F8AF91609495300CA6908 /* AOTrayView */,
 				238F8ABE1609493E00CA6908 /* UIKit.framework */,
 				238F8AC01609493E00CA6908 /* Foundation.framework */,
@@ -139,8 +151,8 @@
 		238F8AE81609493E00CA6908 /* AOTrayViewDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				238F8AEE1609493E00CA6908 /* AOTrayViewDemoTests.h */,
-				238F8AEF1609493E00CA6908 /* AOTrayViewDemoTests.m */,
+				238F8AEE1609493E00CA6908 /* AOTrayViewTests.h */,
+				238F8AEF1609493E00CA6908 /* AOTrayViewTests.m */,
 				238F8AE91609493E00CA6908 /* Supporting Files */,
 			);
 			path = AOTrayViewDemoTests;
@@ -163,6 +175,20 @@
 			);
 			name = AOTrayView;
 			path = ../AOTrayView;
+			sourceTree = "<group>";
+		};
+		238F8B1E160AB47600CA6908 /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				238F8B1F160AB47600CA6908 /* libOCMock.a */,
+				238F8B20160AB47600CA6908 /* NSNotificationCenter+OCMAdditions.h */,
+				238F8B21160AB47600CA6908 /* OCMArg.h */,
+				238F8B22160AB47600CA6908 /* OCMConstraint.h */,
+				238F8B23160AB47600CA6908 /* OCMock.h */,
+				238F8B24160AB47600CA6908 /* OCMockObject.h */,
+				238F8B25160AB47600CA6908 /* OCMockRecorder.h */,
+			);
+			path = OCMock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,7 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				238F8AF01609493E00CA6908 /* AOTrayViewDemoTests.m in Sources */,
+				238F8AF01609493E00CA6908 /* AOTrayViewTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +404,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AOTrayViewDemo/AOTrayViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "AOTrayViewDemo/AOTrayViewDemo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OCMock\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -389,6 +419,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AOTrayViewDemo/AOTrayViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "AOTrayViewDemo/AOTrayViewDemo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OCMock\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -404,7 +438,13 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AOTrayViewDemo/AOTrayViewDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/OCMock\"";
 				INFOPLIST_FILE = "AOTrayViewDemoTests/AOTrayViewDemoTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OCMock\"",
+				);
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -421,7 +461,13 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AOTrayViewDemo/AOTrayViewDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/OCMock\"";
 				INFOPLIST_FILE = "AOTrayViewDemoTests/AOTrayViewDemoTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/OCMock\"",
+				);
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -447,6 +493,7 @@
 				238F8AF51609493E00CA6908 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		238F8AF61609493E00CA6908 /* Build configuration list for PBXNativeTarget "AOTrayViewDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -455,6 +502,7 @@
 				238F8AF81609493E00CA6908 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

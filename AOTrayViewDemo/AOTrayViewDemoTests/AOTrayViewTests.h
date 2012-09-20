@@ -8,6 +8,5 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface AOTrayViewDemoTests : SenTestCase
-
+@interface AOTrayViewTests : SenTestCase 
 @end

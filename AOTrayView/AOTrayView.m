@@ -91,10 +91,14 @@
         self.trayContents = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, overlayHeight-headerHeight, frame.size.width, frame.size.height)] autorelease];
         self.trayContents.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
         self.trayContents.backgroundColor = [UIColor clearColor];
+
+        /*
+         TODO - add API for specifying a UIImageView for a background image
         UIImageView *gradient = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         gradient.image = [UIImage imageNamed:@"deci_nav_footer.png"];
         gradient.contentMode = UIViewContentModeScaleToFill;
         [self addSubview:gradient];
+         */
         
         [self addSubview:trayContents];
         hideTrayContents = YES;
@@ -113,6 +117,26 @@
     self.pressedButtonView.hidden = YES;
 }
 
+/**
+ For some configurations, like the "Where" screen in deci, we can add a button to the tray view to help prompt an action
+ */
+- (void)configureDoneButton:(id)controller {
+    if (!self.doneButton)
+        self.doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.doneButton.frame = CGRectMake(220, 0, 100, trayHeight);
+    //[self.doneButton setBackgroundImage:[UIImage imageNamed:@"a0.png"] forState:UIControlStateNormal];
+    [self.doneButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    self.doneButton.titleLabel.textColor = [UIColor whiteColor];
+    self.doneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    [self.doneButton addTarget:controller action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
+
+    self.pressedButtonView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, trayHeight)] autorelease];
+    self.pressedButtonView.hidden = YES;
+    self.pressedButtonView.backgroundColor = [UIColor blackColor];
+    self.pressedButtonView.alpha = 0.65;
+    [self.doneButton addSubview:self.pressedButtonView];
+}
+
 - (id)initWithFrame:(CGRect)frame andHideNumbers:(BOOL) pAndHideNumbers withController:(id) controller {
     hideNumbers = YES;
     headerHeight = 15;
@@ -120,20 +144,15 @@
     self = [self initWithFrame:frame andSingleItemLabel:@"" andMultiItemLabel:@""];
     self.trayContents.backgroundColor = [UIColor clearColor];
     [self.transparentOverlay removeFromSuperview];
-//    self.trayContents.frame = CGRectMake(0, overlayHeight, 320, frame.size.height);
-    self.doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.doneButton.frame = CGRectMake(220, 0, 100, trayHeight);
-    [self.doneButton setBackgroundImage:[UIImage imageNamed:@"a0.png"] forState:UIControlStateNormal];
-    //[self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
-    [self.doneButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    self.doneButton.titleLabel.textColor = [UIColor whiteColor];
-    self.doneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-    [self.doneButton addTarget:controller action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
-    //UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, trayHeight)];
+    [self configureDoneButton:controller];
+    
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(225, 20, 90, trayHeight-5)];
     [imageView setImage:[UIImage imageNamed:@"powered-by-google-on-non-white.png"]];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
-    
+
+    /*
+     TODO for the "static" view of the tray in which it always shows, refactor out an API to show default images
+     
     //UIView *placeHolder = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
     self.unselectedIconImage1 = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)] autorelease];
     //placeHolder.backgroundColor = [UIColor colorWithRed:0.988 green:0.721 blue:0.075 alpha:1.0];
@@ -151,12 +170,9 @@
     //placeHolder.backgroundColor = [UIColor colorWithRed:0.945 green:0.4 blue:0.137 alpha:1.0];
     self.unselectedIconImage4.image = [UIImage imageNamed:@"deci_icon_where_check_2.png"];
     [self.trayContents addSubview:self.unselectedIconImage4];
+     
+     */
     
-    self.pressedButtonView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, trayHeight)] autorelease];
-    self.pressedButtonView.hidden = YES;
-    self.pressedButtonView.backgroundColor = [UIColor blackColor];
-    self.pressedButtonView.alpha = 0.65;
-    [self.doneButton addSubview:self.pressedButtonView];    
     
     self.animatingImageView = imageView;
     [imageView release];
@@ -175,6 +191,9 @@
     [self.items setObject:newToAdd forKey:[toAdd objectForKey:@"id"]];
     [self.trayContents setContentOffset:CGPointMake(0, 0) animated:YES];
     
+    /*
+     TODO for the "static" view of the tray in which it always shows, refactor out an API to show default images
+     
     if ([[self.items allKeys] count] == 1) {
         self.unselectedIconImage2.image = [UIImage imageNamed:@"deci_icon_where_check.png"];
         self.unselectedIconImage3.image = [UIImage imageNamed:@"deci_icon_where_check_2.png"];
@@ -185,6 +204,7 @@
     } else if ([[self.items allKeys] count] == 3) {
         self.unselectedIconImage4.image = [UIImage imageNamed:@"deci_icon_where_check.png"];
     }
+     */
     
     if ([[self.items allKeys] count] == 1 && !self.alwaysShow) {
         self.counterLabel.text = self.singleItemLabel;
@@ -203,7 +223,7 @@
         self.counterLabel.text = [NSString stringWithFormat:@"%d %@", [[self.items allKeys] count], self.multiItemLabel];
     }
     UIView *view = [toAdd objectForKey:@"view"];
-    view.frame = CGRectMake(5, 5, view.frame.size.width, view.frame.size.height);
+    view.frame = CGRectMake(5, 5+overlayHeight, view.frame.size.width, view.frame.size.height);
     if (textLabel != nil) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(1, 40, 53, 15)];
         label.font = [UIFont systemFontOfSize:10];
@@ -231,21 +251,10 @@
     
     [UIView beginAnimations:@"bounce" context:nil];
     [UIView setAnimationRepeatCount:2];
-    //    [UIView setAnimationRepeatAutoreverses:YES];
     [UIView setAnimationDuration:0.25];
     view.center = CGPointMake(view.center.x, view.center.y + 10);
     view.center = CGPointMake(view.center.x, view.center.y - 10);
     [UIView commitAnimations];
-    
-    //    CABasicAnimation *bounce = [CABasicAnimation animationWithKeyPath:@"position.y"];
-    //    bounce.duration = 0.15;
-    //    bounce.fromValue = [NSNumber numberWithInt:-5];
-    //    bounce.toValue = [NSNumber numberWithInt:5];
-    //    bounce.repeatCount = 2;
-    //    bounce.autoreverses = YES;
-    //    bounce.fillMode = kCAFillModeForwards;
-    //    bounce.removedOnCompletion = NO;
-    //    [view.layer addAnimation:bounce forKey:@"bounce"];
 }
 
 - (void) remove:(NSDictionary *)toRemove adjacentViewToResize:(UIView *) adjacentViewToResize {
@@ -326,17 +335,9 @@
     [unselectedIconImage2 release];
     [unselectedIconImage3 release];
     [unselectedIconImage4 release];
+    [transparentOverlay release];
     
     [super dealloc];
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end
