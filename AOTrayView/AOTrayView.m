@@ -25,7 +25,9 @@
 #import "AOTrayView.h"
 #import <QuartzCore/CAAnimation.h>
 
-@interface AOTrayView ()
+@interface AOTrayView () {
+    UIDynamicAnimator *animator;
+}
 
 @property (nonatomic, retain) UILabel *counterLabel;
 @property (nonatomic, retain) UIScrollView *trayContents;
@@ -72,6 +74,8 @@
 - (id)initWithFrame:(CGRect)frame andSingleItemLabel:(NSString *)pSingleItemLabel andMultiItemLabel:(NSString *)pMultiItemLabel {
     self = [super initWithFrame:frame];
     if (self) {
+        animator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
+        
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
         self.singleItemLabel = pSingleItemLabel;
         self.multiItemLabel = pMultiItemLabel;
