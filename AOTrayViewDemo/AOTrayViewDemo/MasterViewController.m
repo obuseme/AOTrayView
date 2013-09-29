@@ -27,26 +27,19 @@
     return self;
 }
 							
-- (void)dealloc
-{
-    [_objects release];
-    [_selectedItems release];
-    [super dealloc];
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     _objects = [[NSMutableArray alloc] initWithObjects:@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", nil];
     _selectedItems = [[NSMutableDictionary alloc] initWithCapacity:1];
-    float overlayHeight = 15.0;
+    float overlayHeight = 0;
     float trayHeight = 55.0;
     _trayView = [[AOTrayView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height+overlayHeight, self.view.frame.size.width, trayHeight + overlayHeight) andSingleItemLabel:@"1 item selected" andMultiItemLabel:@" items selected"];
     _trayView.overlayHeight = overlayHeight;
     _trayView.trayHeight = trayHeight;
     _trayView.backgroundColor = [UIColor blueColor];
     [self.view addSubview:_trayView];
-    [_trayView release];
 }
 
 - (void)viewDidUnload
@@ -78,7 +71,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
 
@@ -98,7 +91,6 @@
     label.text = [[_objects objectAtIndex:indexPath.row] description];
     label.backgroundColor = [UIColor clearColor];
     [thumbnail addSubview:label];
-    [label release];
     
     if ([_selectedItems objectForKey:[[_objects objectAtIndex:indexPath.row] description]]) {
 
@@ -109,7 +101,6 @@
     } else {
         [_trayView add:[NSDictionary dictionaryWithObjectsAndKeys:thumbnail, @"view", [[_objects objectAtIndex:indexPath.row] description], @
                         "id", nil] adjacentViewToResize:tableView];
-        [thumbnail release];
         [_selectedItems setObject:[_objects objectAtIndex:indexPath.row] forKey:[[_objects objectAtIndex:indexPath.row] description]];
     }
 }

@@ -34,7 +34,7 @@
 @property float trayHeight;
 @property float overlayHeight;
 @property BOOL alwaysShow;
-@property (nonatomic, retain) UIImageView *animatingImageView;
+@property (nonatomic, strong) UIImageView *animatingImageView;
 
 - (id)initWithFrame:(CGRect)frame andHideNumbers:(BOOL) pAndHideNumbers withController:(id) controller;
 - (id)initWithFrame:(CGRect)frame andSingleItemLabel:(NSString *)pSingleItemLabel andMultiItemLabel:(NSString *)pMultiItemLabel;

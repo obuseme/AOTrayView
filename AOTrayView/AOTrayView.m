@@ -31,20 +31,20 @@
     UICollisionBehavior *collisionBehavior;
 }
 
-@property (nonatomic, retain) UILabel *counterLabel;
-@property (nonatomic, retain) UIScrollView *trayContents;
-@property (nonatomic, retain) NSString *singleItemLabel;
-@property (nonatomic, retain) NSString *multiItemLabel;
-@property (nonatomic, retain) NSMutableDictionary *items;
-@property (nonatomic, retain) NSMutableDictionary *itemSnaps;
-@property (nonatomic, retain) NSMutableArray *itemViews;
-@property (nonatomic, retain) UIView *transparentOverlay;
-@property (nonatomic, retain) UIButton *doneButton;
-@property (nonatomic, retain) UIView *pressedButtonView;
-@property (nonatomic, retain) UIImageView *unselectedIconImage1;
-@property (nonatomic, retain) UIImageView *unselectedIconImage2;
-@property (nonatomic, retain) UIImageView *unselectedIconImage3;
-@property (nonatomic, retain) UIImageView *unselectedIconImage4;
+@property (nonatomic, strong) UILabel *counterLabel;
+@property (nonatomic, strong) UIScrollView *trayContents;
+@property (nonatomic, strong) NSString *singleItemLabel;
+@property (nonatomic, strong) NSString *multiItemLabel;
+@property (nonatomic, strong) NSMutableDictionary *items;
+@property (nonatomic, strong) NSMutableDictionary *itemSnaps;
+@property (nonatomic, strong) NSMutableArray *itemViews;
+@property (nonatomic, strong) UIView *transparentOverlay;
+@property (nonatomic, strong) UIButton *doneButton;
+@property (nonatomic, strong) UIView *pressedButtonView;
+@property (nonatomic, strong) UIImageView *unselectedIconImage1;
+@property (nonatomic, strong) UIImageView *unselectedIconImage2;
+@property (nonatomic, strong) UIImageView *unselectedIconImage3;
+@property (nonatomic, strong) UIImageView *unselectedIconImage4;
 
 @end
 
@@ -85,18 +85,18 @@
         self.multiItemLabel = pMultiItemLabel;
 
         if (! hideNumbers) {
-            self.transparentOverlay = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, overlayHeight)] autorelease];
+            self.transparentOverlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, overlayHeight)];
             self.transparentOverlay.backgroundColor = [UIColor grayColor];
             self.transparentOverlay.alpha = 0.5;
             self.transparentOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-            self.counterLabel = [[[UILabel alloc] initWithFrame:self.transparentOverlay.frame] autorelease];
+            self.counterLabel = [[UILabel alloc] initWithFrame:self.transparentOverlay.frame];
             self.counterLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
             self.counterLabel.text = @"look at me";
             [transparentOverlay addSubview:self.counterLabel];
             [self addSubview:transparentOverlay];
         }
         
-        self.trayContents = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, overlayHeight-headerHeight, frame.size.width, frame.size.height)] autorelease];
+        self.trayContents = [[UIScrollView alloc] initWithFrame:CGRectMake(0, overlayHeight-headerHeight, frame.size.width, frame.size.height)];
         self.trayContents.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
         self.trayContents.backgroundColor = [UIColor clearColor];
 
@@ -110,9 +110,9 @@
         
         [self addSubview:trayContents];
         hideTrayContents = YES;
-        self.items = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
-        self.itemSnaps = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
-        self.itemViews = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
+        self.items = [[NSMutableDictionary alloc] initWithCapacity:1];
+        self.itemSnaps = [[NSMutableDictionary alloc] initWithCapacity:1];
+        self.itemViews = [[NSMutableArray alloc] initWithCapacity:1];
         headerHeight = 0;
     }
     return self;
@@ -139,7 +139,7 @@
     self.doneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     [self.doneButton addTarget:controller action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
 
-    self.pressedButtonView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, trayHeight)] autorelease];
+    self.pressedButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, trayHeight)];
     self.pressedButtonView.hidden = YES;
     self.pressedButtonView.backgroundColor = [UIColor blackColor];
     self.pressedButtonView.alpha = 0.65;
@@ -184,7 +184,6 @@
     
     
     self.animatingImageView = imageView;
-    [imageView release];
     
     [self addSubview:imageView];
     
@@ -238,7 +237,6 @@
         label.font = [UIFont systemFontOfSize:10];
         label.text = textLabel;
         [view addSubview:label];
-        [label release];
     }
     
     for (int counter=0;counter < [self.itemViews count];counter++) {
@@ -331,23 +329,5 @@
     self.trayContents.contentSize = CGSizeMake(trayHeight * [[self.items allKeys] count], trayHeight);
 }
 
-- (void) dealloc {
-    [counterLabel release];
-    [trayContents release];
-    [multiItemLabel release];
-    [singleItemLabel release];
-    [items release];
-    [itemViews release];
-    [doneButton release];
-    [pressedButtonView release];
-    [animatingImageView release];
-    [unselectedIconImage1 release];
-    [unselectedIconImage2 release];
-    [unselectedIconImage3 release];
-    [unselectedIconImage4 release];
-    [transparentOverlay release];
-    
-    [super dealloc];
-}
 
 @end
