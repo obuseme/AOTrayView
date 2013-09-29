@@ -306,17 +306,21 @@
         
         hideTrayContents = YES;
     } else {
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:0.15];
         
         for (int counter=indexOfRemovedView;counter < [self.itemViews count];counter++) {
             UIView *viewToMove = (UIView *) [[self.itemViews objectAtIndex:counter] objectForKey:@"view"];
-            viewToMove.frame = CGRectMake(viewToMove.frame.origin.x-trayHeight, viewToMove.frame.origin.y, viewToMove.frame.size.width, viewToMove.frame.size.height);
+            
+            CGPoint newPoint = CGPointMake(viewToMove.frame.origin.x-trayHeight + viewToMove.frame.size.width/2, viewToMove.frame.origin.y + viewToMove.frame.size.height / 2);
+            
+            id b = [self.itemSnaps objectForKey:[[self.itemViews objectAtIndex:counter] objectForKey:@"id"]];
+            [animator removeBehavior:b];
+            
+            UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:viewToMove snapToPoint:newPoint];
+            [animator addBehavior:snap];
+            [self.itemSnaps setObject:snap forKey:[[self.itemViews objectAtIndex:counter] objectForKey:@"id"]];
+            
         }
         
-        
-        [UIView commitAnimations];
-
         
         if ([[self.items allKeys] count] == 1) {
             self.counterLabel.text = self.singleItemLabel;
