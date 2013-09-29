@@ -27,6 +27,8 @@
 
 @interface AOTrayView () {
     UIDynamicAnimator *animator;
+    UIGravityBehavior *gravityBehavior;
+    UICollisionBehavior *collisionBehavior;
 }
 
 @property (nonatomic, retain) UILabel *counterLabel;
@@ -34,6 +36,7 @@
 @property (nonatomic, retain) NSString *singleItemLabel;
 @property (nonatomic, retain) NSString *multiItemLabel;
 @property (nonatomic, retain) NSMutableDictionary *items;
+@property (nonatomic, retain) NSMutableDictionary *itemSnaps;
 @property (nonatomic, retain) NSMutableArray *itemViews;
 @property (nonatomic, retain) UIView *transparentOverlay;
 @property (nonatomic, retain) UIButton *doneButton;
@@ -54,6 +57,7 @@
             multiItemLabel,
             singleItemLabel,
             items,
+            itemSnaps,
             itemViews,
             transparentOverlay,
             doneButton, 
@@ -107,6 +111,7 @@
         [self addSubview:trayContents];
         hideTrayContents = YES;
         self.items = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
+        self.itemSnaps = [[[NSMutableDictionary alloc] initWithCapacity:1] autorelease];
         self.itemViews = [[[NSMutableArray alloc] initWithCapacity:1] autorelease];
         headerHeight = 0;
     }
@@ -227,7 +232,7 @@
         self.counterLabel.text = [NSString stringWithFormat:@"%d %@", [[self.items allKeys] count], self.multiItemLabel];
     }
     UIView *view = [toAdd objectForKey:@"view"];
-    view.frame = CGRectMake(5, 5+overlayHeight, view.frame.size.width, view.frame.size.height);
+    view.frame = CGRectMake(0, self.frame.size.height, view.frame.size.width, view.frame.size.height);
     if (textLabel != nil) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(1, 40, 53, 15)];
         label.font = [UIFont systemFontOfSize:10];
@@ -236,29 +241,26 @@
         [label release];
     }
     
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.15];
-    
     for (int counter=0;counter < [self.itemViews count];counter++) {
         UIView *viewToMove = (UIView *) [[self.itemViews objectAtIndex:counter] objectForKey:@"view"];
-        viewToMove.frame = CGRectMake(viewToMove.frame.origin.x+trayHeight, viewToMove.frame.origin.y, viewToMove.frame.size.width, viewToMove.frame.size.height);
+        CGPoint newPoint = CGPointMake(viewToMove.center.x+trayHeight, viewToMove.center.y);
+        
+        id b = [self.itemSnaps objectForKey:[[self.itemViews objectAtIndex:counter] objectForKey:@"id"]];
+        [animator removeBehavior:b];
+        
+        UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:viewToMove snapToPoint:newPoint];
+        [animator addBehavior:snap];
+        [self.itemSnaps setObject:snap forKey:[[self.itemViews objectAtIndex:counter] objectForKey:@"id"]];
     }
-    
-    
-    [UIView commitAnimations];
-            
     
     [newToAdd setObject:view forKey:@"view"];
     [self.itemViews insertObject:newToAdd atIndex:0];
     self.trayContents.contentSize = CGSizeMake(trayHeight * [[self.items allKeys] count], trayHeight);
     [self.trayContents addSubview:view];
     
-    [UIView beginAnimations:@"bounce" context:nil];
-    [UIView setAnimationRepeatCount:2];
-    [UIView setAnimationDuration:0.25];
-    view.center = CGPointMake(view.center.x, view.center.y + 10);
-    view.center = CGPointMake(view.center.x, view.center.y - 10);
-    [UIView commitAnimations];
+    UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:view snapToPoint:CGPointMake(view.frame.size.width / 2 + 5, view.frame.size.height / 2 + 5 + overlayHeight)];
+    [animator addBehavior:snap];
+    [self.itemSnaps setObject:snap forKey:[newToAdd objectForKey:@"id"]];
 }
 
 - (void) remove:(NSDictionary *)toRemove adjacentViewToResize:(UIView *) adjacentViewToResize {
