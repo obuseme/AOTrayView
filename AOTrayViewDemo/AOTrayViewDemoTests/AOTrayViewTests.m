@@ -39,6 +39,7 @@
 {
     [[doneButton expect] setFrame:CGRectMake(220, 0, 100, toTest.trayHeight)];
     [[doneButton expect] setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [[doneButton expect] setTitleLabel:];
     
     [toTest performSelector:@selector(configureDoneButton:) withObject:nil];
 }

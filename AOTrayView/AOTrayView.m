@@ -69,11 +69,66 @@
             unselectedIconImage3,
             unselectedIconImage4;
 
+- (void)showCounterLabelOnOverlay:(CGRect)frame {
+    self.transparentOverlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, overlayHeight)];
+    self.transparentOverlay.backgroundColor = [UIColor grayColor];
+    self.transparentOverlay.alpha = 0.5;
+    self.transparentOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    self.counterLabel = [[UILabel alloc] initWithFrame:self.transparentOverlay.frame];
+    self.counterLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    self.counterLabel.text = @"look at me";
+    [transparentOverlay addSubview:self.counterLabel];
+    [self addSubview:transparentOverlay];
+}
+
+#pragma mark - Methods that setup stuff
+
+- (void)setupTrayContents:(CGRect)frame {
+    self.trayContents = [[UIScrollView alloc] initWithFrame:CGRectMake(0, overlayHeight-headerHeight, frame.size.width, frame.size.height)];
+    self.trayContents.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    self.trayContents.backgroundColor = [UIColor clearColor];
+}
+
+- (void)setupPressedButtonView {
+    self.pressedButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, trayHeight)];
+    self.pressedButtonView.hidden = YES;
+    self.pressedButtonView.backgroundColor = [UIColor blackColor];
+    self.pressedButtonView.alpha = 0.65;
+}
+
+/**
+ For some configurations, like the "Where" screen in deci, we can add a button to the tray view to help prompt an action
+ */
+- (void)setupDoneButton:(id)controller {
+    if (!self.doneButton)
+        self.doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.doneButton.frame = CGRectMake(220, 0, 100, trayHeight);
+    //[self.doneButton setBackgroundImage:[UIImage imageNamed:@"a0.png"] forState:UIControlStateNormal];
+    [self.doneButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    self.doneButton.titleLabel.textColor = [UIColor whiteColor];
+    self.doneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    [self.doneButton addTarget:controller action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self setupPressedButtonView];
+    [self.doneButton addSubview:self.pressedButtonView];
+}
+
+#pragma mark - IBActions
+
+- (IBAction) doneReleased:(id) sender  {
+    self.pressedButtonView.hidden = NO;
+}
+
+- (IBAction) doneTouch:(id) sender  {
+    self.pressedButtonView.hidden = YES;
+}
+
+#pragma mark - inits
+
 - (id)initWithFrame:(CGRect)frame {
     self = [self initWithFrame:frame andSingleItemLabel:@"" andMultiItemLabel:@""];
     return self;
 }
-
 
 - (id)initWithFrame:(CGRect)frame andSingleItemLabel:(NSString *)pSingleItemLabel andMultiItemLabel:(NSString *)pMultiItemLabel {
     self = [super initWithFrame:frame];
@@ -85,20 +140,10 @@
         self.multiItemLabel = pMultiItemLabel;
 
         if (! hideNumbers) {
-            self.transparentOverlay = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, overlayHeight)];
-            self.transparentOverlay.backgroundColor = [UIColor grayColor];
-            self.transparentOverlay.alpha = 0.5;
-            self.transparentOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-            self.counterLabel = [[UILabel alloc] initWithFrame:self.transparentOverlay.frame];
-            self.counterLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-            self.counterLabel.text = @"look at me";
-            [transparentOverlay addSubview:self.counterLabel];
-            [self addSubview:transparentOverlay];
+            [self showCounterLabelOnOverlay:frame];
         }
         
-        self.trayContents = [[UIScrollView alloc] initWithFrame:CGRectMake(0, overlayHeight-headerHeight, frame.size.width, frame.size.height)];
-        self.trayContents.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-        self.trayContents.backgroundColor = [UIColor clearColor];
+        [self setupTrayContents:frame];
 
         /*
          TODO - add API for specifying a UIImageView for a background image
@@ -118,34 +163,6 @@
     return self;
 }
 
-- (IBAction) doneReleased:(id) sender  {
-    self.pressedButtonView.hidden = NO;
-}
-
-- (IBAction) doneTouch:(id) sender  {
-    self.pressedButtonView.hidden = YES;
-}
-
-/**
- For some configurations, like the "Where" screen in deci, we can add a button to the tray view to help prompt an action
- */
-- (void)configureDoneButton:(id)controller {
-    if (!self.doneButton)
-        self.doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.doneButton.frame = CGRectMake(220, 0, 100, trayHeight);
-    //[self.doneButton setBackgroundImage:[UIImage imageNamed:@"a0.png"] forState:UIControlStateNormal];
-    [self.doneButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    self.doneButton.titleLabel.textColor = [UIColor whiteColor];
-    self.doneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-    [self.doneButton addTarget:controller action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
-
-    self.pressedButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, trayHeight)];
-    self.pressedButtonView.hidden = YES;
-    self.pressedButtonView.backgroundColor = [UIColor blackColor];
-    self.pressedButtonView.alpha = 0.65;
-    [self.doneButton addSubview:self.pressedButtonView];
-}
-
 - (id)initWithFrame:(CGRect)frame andHideNumbers:(BOOL) pAndHideNumbers withController:(id) controller {
     hideNumbers = YES;
     headerHeight = 15;
@@ -153,7 +170,7 @@
     self = [self initWithFrame:frame andSingleItemLabel:@"" andMultiItemLabel:@""];
     self.trayContents.backgroundColor = [UIColor clearColor];
     [self.transparentOverlay removeFromSuperview];
-    [self configureDoneButton:controller];
+    [self setupDoneButton:controller];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(225, 20, 90, trayHeight-5)];
     [imageView setImage:[UIImage imageNamed:@"powered-by-google-on-non-white.png"]];
@@ -190,8 +207,55 @@
     return self;
 }
 
+#pragma mark - Methods to add and remove stuff to the tray view
+
+- (BOOL) oneItemShowing
+{
+    return [[self.items allKeys] count] == 1;
+}
+
 - (void) add:(NSDictionary *)toAdd adjacentViewToResize:(UIView *) adjacentViewToResize {
     [self add:toAdd adjacentViewToResize:adjacentViewToResize withTextLabel:nil];
+}
+
+- (void)animateInTrayContrainer:(UIView *)adjacentViewToResize {
+    self.counterLabel.text = self.singleItemLabel;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.15];
+    
+    hideTrayContents = NO;
+    self.frame = CGRectMake(0, self.frame.origin.y-trayHeight-overlayHeight, self.frame.size.width, trayHeight);
+    adjacentViewToResize.frame = CGRectMake(adjacentViewToResize.frame.origin.x, 
+                                            adjacentViewToResize.frame.origin.y, 
+                                            adjacentViewToResize.frame.size.width, 
+                                            adjacentViewToResize.frame.size.height - trayHeight-  overlayHeight + headerHeight );
+    
+    [UIView commitAnimations];
+}
+
+- (void)slideOverOtherViewsToMakeRoomForNewView {
+    for (int counter=0;counter < [self.itemViews count];counter++) {
+        UIView *viewToMove = (UIView *) [[self.itemViews objectAtIndex:counter] objectForKey:@"view"];
+        CGPoint newPoint = CGPointMake(viewToMove.center.x+trayHeight, viewToMove.center.y);
+        
+        id b = [self.itemSnaps objectForKey:[[self.itemViews objectAtIndex:counter] objectForKey:@"id"]];
+        [animator removeBehavior:b];
+        
+        UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:viewToMove snapToPoint:newPoint];
+        [animator addBehavior:snap];
+        [self.itemSnaps setObject:snap forKey:[[self.itemViews objectAtIndex:counter] objectForKey:@"id"]];
+    }
+}
+
+- (void)slideInNewView:(UIView *)view newToAdd:(NSMutableDictionary *)newToAdd {
+    [newToAdd setObject:view forKey:@"view"];
+    [self.itemViews insertObject:newToAdd atIndex:0];
+    self.trayContents.contentSize = CGSizeMake(trayHeight * [[self.items allKeys] count], trayHeight);
+    [self.trayContents addSubview:view];
+    
+    UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:view snapToPoint:CGPointMake(view.frame.size.width / 2 + 5, view.frame.size.height / 2 + 5 + overlayHeight)];
+    [animator addBehavior:snap];
+    [self.itemSnaps setObject:snap forKey:[newToAdd objectForKey:@"id"]];
 }
 
 - (void) add:(NSDictionary *)toAdd adjacentViewToResize:(UIView *) adjacentViewToResize withTextLabel:(NSString *)textLabel {
@@ -214,22 +278,12 @@
     }
      */
     
-    if ([[self.items allKeys] count] == 1 && !self.alwaysShow) {
-        self.counterLabel.text = self.singleItemLabel;
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:0.15];
-        
-        hideTrayContents = NO;
-        self.frame = CGRectMake(0, self.frame.origin.y-trayHeight-overlayHeight, self.frame.size.width, trayHeight);
-        adjacentViewToResize.frame = CGRectMake(adjacentViewToResize.frame.origin.x, 
-                                                adjacentViewToResize.frame.origin.y, 
-                                                adjacentViewToResize.frame.size.width, 
-                                                adjacentViewToResize.frame.size.height - trayHeight-  overlayHeight + headerHeight );
-        
-        [UIView commitAnimations];
+    if ([self oneItemShowing] && !self.alwaysShow) {
+        [self animateInTrayContrainer:adjacentViewToResize];
     } else {
         self.counterLabel.text = [NSString stringWithFormat:@"%d %@", [[self.items allKeys] count], self.multiItemLabel];
     }
+    
     UIView *view = [toAdd objectForKey:@"view"];
     view.frame = CGRectMake(0, self.frame.size.height, view.frame.size.width, view.frame.size.height);
     if (textLabel != nil) {
@@ -239,26 +293,8 @@
         [view addSubview:label];
     }
     
-    for (int counter=0;counter < [self.itemViews count];counter++) {
-        UIView *viewToMove = (UIView *) [[self.itemViews objectAtIndex:counter] objectForKey:@"view"];
-        CGPoint newPoint = CGPointMake(viewToMove.center.x+trayHeight, viewToMove.center.y);
-        
-        id b = [self.itemSnaps objectForKey:[[self.itemViews objectAtIndex:counter] objectForKey:@"id"]];
-        [animator removeBehavior:b];
-        
-        UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:viewToMove snapToPoint:newPoint];
-        [animator addBehavior:snap];
-        [self.itemSnaps setObject:snap forKey:[[self.itemViews objectAtIndex:counter] objectForKey:@"id"]];
-    }
-    
-    [newToAdd setObject:view forKey:@"view"];
-    [self.itemViews insertObject:newToAdd atIndex:0];
-    self.trayContents.contentSize = CGSizeMake(trayHeight * [[self.items allKeys] count], trayHeight);
-    [self.trayContents addSubview:view];
-    
-    UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:view snapToPoint:CGPointMake(view.frame.size.width / 2 + 5, view.frame.size.height / 2 + 5 + overlayHeight)];
-    [animator addBehavior:snap];
-    [self.itemSnaps setObject:snap forKey:[newToAdd objectForKey:@"id"]];
+    [self slideOverOtherViewsToMakeRoomForNewView];
+    [self slideInNewView:view newToAdd:newToAdd];
 }
 
 - (void) remove:(NSDictionary *)toRemove adjacentViewToResize:(UIView *) adjacentViewToResize {
