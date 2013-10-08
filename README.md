@@ -35,4 +35,4 @@ Open your project in Xcode from the .xcworkspace file (not the usual project fil
 
 ``` bash
 $ open MyProject.xcworkspace
-```N
+```
